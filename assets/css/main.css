@@ -1,9 +1,7 @@
 :root {
-  background-color: #020617;
-  color: #f8fafc;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  @apply bg-slate-950 text-slate-300 font-mono;
 }
 
 h1 {
-  color: #cbd5e1;
+  @apply text-white text-xl;
 }

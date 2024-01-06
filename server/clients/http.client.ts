@@ -1,5 +1,5 @@
 import { headers } from '../configs/http.config'
-import { DATA_TYPE, type DataType, type GetResponse } from '../types/httpClient.type'
+import { DATA_TYPE, type DataType, type GetResponse } from '../../types/httpClient.type'
 
 type HttpClientConfigs = {
   url: string

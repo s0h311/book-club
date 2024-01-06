@@ -1,7 +1,7 @@
 import { libraryUrl } from '../configs/http.config'
 import { get } from './http.client'
-import type { Book, BookResponse } from '../types/book.type'
-import { DATA_TYPE, type GetResponse } from '../types/httpClient.type'
+import type { Book, BookResponse } from '../../types/book.type'
+import { DATA_TYPE, type GetResponse } from '../../types/httpClient.type'
 import fs from 'fs'
 
 export async function findAllBooks(): Promise<Book[]> {
@@ -22,10 +22,11 @@ export async function findAllBooks(): Promise<Book[]> {
     }
   }) */
 
-  const books: Book[] = bookReponse.data.itemsList.map((book) => ({
+  const books: Book[] = bookReponse.data.itemsList.map((book, index) => ({
     asin: book.asin,
     title: book.title,
     highlights: [],
+    cover: `image${index}.png`,
   }))
 
   return books

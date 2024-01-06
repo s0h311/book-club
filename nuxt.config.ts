@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
   css: ['~/assets/css/main.css'],
+  image: {
+    quality: 70,
+  },
   devtools: { enabled: true },
 })

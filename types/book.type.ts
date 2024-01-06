@@ -22,4 +22,5 @@ export type Book = {
   asin: string
   title: string
   highlights: Highlight[]
+  cover?: string
 }

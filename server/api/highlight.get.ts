@@ -1,7 +1,7 @@
 import { findAllHighlights } from '../clients/highlight.client'
 import { findAllBooks } from '../clients/library.client'
-import { Book } from '../types/book.type'
-import { Highlight } from '../types/highlight.type'
+import { Book } from '../../types/book.type'
+import { Highlight } from '../../types/highlight.type'
 
 export type HighlightResponse =
   | {
