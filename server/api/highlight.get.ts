@@ -2,9 +2,8 @@ import { findAllHighlights } from '../clients/highlight.client'
 import { findAllBooks } from '../clients/library.client'
 import { Book } from '../types/book.type'
 import { Highlight } from '../types/highlight.type'
-import fs from 'fs'
 
-type HighlightResponse =
+export type HighlightResponse =
   | {
       data: Book[]
       error: null

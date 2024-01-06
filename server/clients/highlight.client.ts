@@ -3,7 +3,6 @@ import { get } from './http.client'
 import { highlightPageRegex, highlightRegex } from '../configs/regex.config'
 import type { Highlight } from '../types/highlight.type'
 import { DATA_TYPE, type GetResponse, type HTML } from '../types/httpClient.type'
-import fs from 'fs'
 
 export async function findAllHighlights(asin: string): Promise<Highlight[]> {
   const html: GetResponse<HTML> = await get<HTML>({
