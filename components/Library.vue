@@ -8,7 +8,7 @@
       <NuxtImg
         class="rounded-sm"
         :src="book.cover"
-        sizes="40dvw sm:25dvw md:20dvw lg:8dvw"
+        sizes="40dvw sm:25dvw md:20dvw lg:12dvw"
       />
     </summary>
   </section>

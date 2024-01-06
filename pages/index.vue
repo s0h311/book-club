@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-5">
+  <div class="space-y-10">
     <h1>Library</h1>
 
     <Library

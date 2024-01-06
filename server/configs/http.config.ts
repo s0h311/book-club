@@ -8,7 +8,7 @@ export const headers = {
 
 /* export const libraryUrl: string = 'https://read.amazon.com/kindle-library/search'
 export const highlightUrl = (asin: string): string =>
-  `https://read.amazon.com/notebook?asin=${asin}&contentLimitState=&` */
+`https://read.amazon.com/notebook?asin=${asin}&contentLimitState=&` */
 
 export const libraryUrl: string = 'http://localhost:3000/api/fakeBook'
 export const highlightUrl = (asin: string): string => `http://localhost:3000/api/fakeHighlight`

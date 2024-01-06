@@ -2,12 +2,12 @@ import { libraryUrl } from '../configs/http.config'
 import { get } from './http.client'
 import type { Book, BookResponse } from '../../types/book.type'
 import { DATA_TYPE, type GetResponse } from '../../types/httpClient.type'
-import fs from 'fs'
+import * as fs from 'node:fs/promises'
 
 export async function findAllBooks(): Promise<Book[]> {
   const bookReponse: GetResponse<BookResponse> = await get<BookResponse>({
     url: libraryUrl,
-    callOrigin: 'findAllHighlights',
+    callOrigin: 'findAllBooks',
     dataType: DATA_TYPE.JSON,
   })
 
@@ -16,11 +16,11 @@ export async function findAllBooks(): Promise<Book[]> {
     return []
   }
 
-  /*   fs.writeFile('./temp/books.json', JSON.stringify(bookReponse.data, null, 2), (err) => {
-    if (err) {
-      // TODO handle error
-    }
-  }) */
+  /* try {
+    await fs.writeFile('./temp/books.json', JSON.stringify(bookReponse.data, null, 2))
+  } catch (e) {
+    console.error(e)
+  } */
 
   const books: Book[] = bookReponse.data.itemsList.map((book, index) => ({
     asin: book.asin,
