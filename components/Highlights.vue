@@ -1,31 +1,26 @@
 <template>
-  <div class="space-y-10">
-    <h1>{{ book.title }}</h1>
+  <TopicsBar
+    class="mb-10"
+    :topics="topicsSet"
+    @topic-click="filterTopic"
+    @reset-topics="resetTopicFilter"
+  />
 
-    <h2 class="underline">Highlights</h2>
-
-    <TopicsBar
-      :topics="topicsSet"
-      @topic-click="filterTopic"
-      @reset-topics="resetTopicFilter"
-    />
-
-    <ul>
-      <li
-        v-for="highlight in highlights"
-        class="border rounded-md border-slate-800 px-5 py-3 space-y-3"
-      >
-        <Highlight
-          :highlight="highlight"
-          :topics="getHighlightTopics(highlight.note)"
-        />
-      </li>
-    </ul>
-  </div>
+  <h2 class="mb-3">Highlights</h2>
+  <ul class="space-y-5">
+    <li
+      v-for="highlight in highlights"
+      class="border rounded-md border-slate-800 px-5 py-3 space-y-3"
+    >
+      <Highlight
+        :highlight="highlight"
+        :topics="getHighlightTopics(highlight.note)"
+      />
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
-import { get } from '~/server/clients/http.client'
 import type { Book } from '~/types/book.type'
 import type { Highlight } from '~/types/highlight.type'
 

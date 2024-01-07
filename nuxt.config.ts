@@ -5,5 +5,5 @@ export default defineNuxtConfig({
   image: {
     quality: 70,
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 })

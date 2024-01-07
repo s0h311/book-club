@@ -1,7 +1,6 @@
 <template>
   <div class="space-y-10">
-    <h1>Library</h1>
-
+    <Logo />
     <Library
       :books="books"
       @book-click="handleBookClick"

@@ -1,7 +1,21 @@
 :root {
-  @apply bg-slate-950 text-slate-300 font-mono;
+  @apply bg-slate-950 text-slate-300 font-mono text-base;
 }
 
 h1 {
   @apply text-white text-xl;
+}
+
+h2 {
+  @apply text-slate-200 text-lg;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }

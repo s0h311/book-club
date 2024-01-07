@@ -1,5 +1,5 @@
 <template>
-  <section class="space-y-10">
+  <section class="space-y-5">
     <a
       class="cursor-pointer w-fit"
       @click="router.go(-1)"
@@ -7,17 +7,20 @@
       <IconBack />
     </a>
 
-    <article class="lg:flex lg:gap-10">
+    <article class="lg:flex lg:gap-20 space-y-10 lg:space-y-0 lg:relative">
       <NuxtImg
-        class="rounded-md object-contain self-start"
+        class="rounded-md w-1/2 lg:w-[33dvw] xl:w-[20dvw] mx-auto lg:object-contain self-start lg:sticky lg:top-14"
         :src="selectedBook.cover"
-        width="18dvw"
+        width="50dvw lg:30dvw xl:20dvw"
       />
 
-      <Highlights
-        v-if="selectedBook"
-        :book="selectedBook"
-      />
+      <section>
+        <h1 class="mb-10">{{ selectedBook.title }}</h1>
+        <Highlights
+          v-if="selectedBook"
+          :book="selectedBook"
+        />
+      </section>
     </article>
   </section>
 </template>
