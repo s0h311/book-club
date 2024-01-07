@@ -3,7 +3,7 @@
     <summary
       v-for="book in books"
       class="list-none cursor-pointer"
-      @click="emit('onBookClick', book.asin)"
+      @click="emit('bookClick', book.asin)"
     >
       <NuxtImg
         class="rounded-sm"
@@ -22,7 +22,7 @@ type Props = {
 }
 
 type Emits = {
-  onBookClick: [asin: string]
+  bookClick: [asin: string]
 }
 
 const props = defineProps<Props>()

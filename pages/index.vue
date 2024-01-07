@@ -4,7 +4,7 @@
 
     <Library
       :books="books"
-      @on-book-click="handleBookClick"
+      @book-click="handleBookClick"
     />
   </div>
 </template>
