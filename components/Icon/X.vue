@@ -7,7 +7,7 @@
   >
     <path
       fill="none"
-      stroke="currentColor"
+      :stroke="color ?? 'currentColor'"
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="1.5"
@@ -15,3 +15,11 @@
     />
   </svg>
 </template>
+
+<script setup lang="ts">
+type Props = {
+  color?: string
+}
+
+const props = defineProps<Props>()
+</script>

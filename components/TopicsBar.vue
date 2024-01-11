@@ -11,20 +11,6 @@
       >
         {{ topic }}
       </li>
-
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">hello</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">darkness</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">my</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">old</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">friend</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">I've</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">come</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">to</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">talk</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">with</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">you</li>
-      <li class="text-xs rounded-md px-1.5 py-0.5 bg-slate-400 text-black cursor-pointer">again</li>
-
       <li
         v-if="filteredTopics.length > 0"
         class="text-xs text-white cursor-pointer"

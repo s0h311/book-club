@@ -7,7 +7,7 @@
   >
     <g
       fill="none"
-      stroke="currentColor"
+      :stroke="color ?? 'currentColor'"
       stroke-width="1.5"
     >
       <path
@@ -19,3 +19,11 @@
     </g>
   </svg>
 </template>
+
+<script setup lang="ts">
+type Props = {
+  color?: string
+}
+
+const props = defineProps<Props>()
+</script>
