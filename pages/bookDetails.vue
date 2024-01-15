@@ -30,4 +30,8 @@ import type { Book } from '~/types/book.type'
 
 const router = useRouter()
 const selectedBook = useState<Book>('selectedBook')
+
+useHead({
+  title: selectedBook.value.title ?? 'Book Details',
+})
 </script>
