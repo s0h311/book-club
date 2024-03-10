@@ -15,6 +15,7 @@
       <Highlight
         :highlight="highlight"
         :topics="getHighlightTopics(highlight.note)"
+        @topic-click="(topic: string) => filterTopic([topic])"
       />
     </li>
   </ul>

@@ -15,7 +15,7 @@
       />
 
       <section>
-        <h1 class="mb-10">{{ selectedBook.title }}</h1>
+        <h1 class="mb-10 font-sans tracking-widest">{{ selectedBook.title }}</h1>
         <Highlights
           v-if="selectedBook"
           :book="selectedBook"
