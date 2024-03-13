@@ -1,23 +1,12 @@
 import type { User } from '@prisma/client'
+import type { ApiResponse } from '~/server/types'
 import type { SignupData } from '~/types/user.type'
 
-type SignupResponse =
-  | {
-      data: User['id']
-      error: null
-    }
-  | {
-      data: null
-      error: Error
-    }
-
-export default async function useSignup(data: SignupData): Promise<SignupResponse> {
+export default async function useSignup(data: SignupData): Promise<ApiResponse<Omit<User, 'hashedPassword'>>> {
   const response = await $fetch('api/signup', {
     method: 'POST',
     body: JSON.stringify({ email: data.email, password: data.password }),
   })
 
-  console.log('response', response.json())
-
-  return { data: 123, error: null }
+  return response as ApiResponse<Omit<User, 'hashedPassword'>>
 }

@@ -15,10 +15,14 @@
       </li>
     </ul>
   </section>
+
+  {{ user }}
 </template>
 
 <script setup lang="ts">
 import type { Book } from '~/types/book.type'
+
+const user = await useUser()
 
 type Props = {
   books: Book[]

@@ -2,15 +2,21 @@ import { lucia } from '../auth/lucia'
 import { Argon2id } from 'oslo/password'
 import { prismaClient } from '../auth/adapter'
 import validateSignupDate from '@/validation/signupData.validation'
-import { Prisma } from '@prisma/client'
+import { Prisma, User } from '@prisma/client'
+import { ApiError, ApiResponse } from '../types'
+import updateSession from '../auth/updateSession'
 
-export default defineEventHandler(async (event): Promise<Response> => {
+export default defineEventHandler(async (event): Promise<ApiResponse<Omit<User, 'hashedPassword'>>> => {
   const validationResult = await readValidatedBody(event, (body) => validateSignupDate(body))
 
   if (!validationResult.success) {
-    return new Response('Invalid email or password', {
-      status: 400,
-    })
+    return {
+      data: null,
+      error: {
+        message: 'E-Mail or password invalid',
+        type: 'invalidCredentials',
+      },
+    }
   }
 
   const { email, password } = validationResult.data
@@ -25,42 +31,33 @@ export default defineEventHandler(async (event): Promise<Response> => {
       },
     })
 
-    const session = await lucia.createSession(user.id, {})
+    await updateSession(user.id, event)
 
-    const sessionCookie = lucia.createSessionCookie(session.id)
-
-    const response = {
-      data: user.id,
+    return {
+      data: { id: user.id, email: user.email },
       error: null,
     }
-
-    return new Response(JSON.stringify(response), {
-      status: 302,
-      headers: {
-        Location: '/',
-        'Set-Cookie': sessionCookie.serialize(),
-      },
-    })
   } catch (error) {
     const prismaError = handlePrismaError(error)
 
-    return new Response(prismaError.message, {
-      status: prismaError.status,
-    })
+    return {
+      data: null,
+      error: prismaError,
+    }
   }
 })
 
-function handlePrismaError(error: unknown): { status: number; message: string } {
+function handlePrismaError(error: unknown): ApiError {
   if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
     return {
-      status: 400,
       message: 'This email is already in use',
+      type: 'emailAlreadyInUse',
     }
   }
 
   console.error(error)
   return {
-    status: 500,
     message: 'An error occurred',
+    type: 'unknown',
   }
 }
