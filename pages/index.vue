@@ -1,15 +1,18 @@
 <template>
-  <div class="space-y-10">
-    <Logo />
+  <main class="grid">
     <Library
       :books="books"
       @book-click="handleBookClick"
     />
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
 import type { Book } from '~/types/book.type'
+
+definePageMeta({
+  middleware: ['auth'],
+})
 
 const books = await useFetchBooks()
 const selectedBook = useState<Book>('selectedBook')

@@ -3,10 +3,17 @@ import { User } from '@prisma/client'
 import { ApiResponse } from '../types'
 import updateSession from '../auth/updateSession'
 
-export default defineEventHandler(async (event): Promise<ApiResponse<Omit<User, 'hashedPassword'>>> => {
-  const body: { sessionId: string } = await readBody(event)
+export default defineEventHandler(async (event): Promise<ApiResponse<Omit<User, 'hashedPassword'> | null>> => {
+  const sessionId = getCookie(event, 'auth_session')
 
-  const { session, user } = await lucia.validateSession(body.sessionId)
+  if (!sessionId) {
+    return {
+      data: null,
+      error: null,
+    }
+  }
+
+  const { session, user } = await lucia.validateSession(sessionId)
 
   if (session?.fresh) {
     updateSession(user.id, event)

@@ -1,57 +1,29 @@
 <template>
-  <form
-    class="grid place-items-center gap-4 text-slate-800"
-    @submit.prevent="signup"
-  >
-    <input
-      class="rounded px-3 py-2"
-      type="text"
-      name="email"
-      placeholder="E-Mail"
+  <section>
+    <h1>Login</h1>
+
+    <LoginForm
+      :error-message="errorMessage"
+      @login-click="login"
     />
-    <input
-      class="rounded px-3 py-2"
-      type="text"
-      name="password"
-      placeholder="Password"
-    />
-
-    <p
-      v-if="errorMessage.message"
-      class="text-red-400"
-    >
-      {{ errorMessage.message }}
-
-      <NuxtLink
-        v-if="errorMessage.type === 'emailAlreadyInUse'"
-        class="text-slate-200"
-        to="/login"
-      >
-        &nbsp;Please login</NuxtLink
-      >
-    </p>
-
-    <button
-      class="rounded px-3 py-2 bg-slate-200"
-      type="submit"
-    >
-      Signup
-    </button>
-  </form>
+  </section>
 </template>
 
 <script setup lang="ts">
-import type { User } from '@prisma/client'
+import type { User } from 'lucia'
 import type { ApiError } from '~/server/types'
 import validateSignupData from '~/validation/signupData.validation'
 
-const router = useRouter()
+definePageMeta({
+  middleware: ['not-auth'],
+})
+
 const errorMessage = reactive<Partial<ApiError>>({
   message: '',
   type: undefined,
 })
 
-async function signup(event: Event) {
+async function login(event: Event) {
   const formData = new FormData(event.target as HTMLFormElement)
 
   const email = formData.get('email')
@@ -76,6 +48,6 @@ async function signup(event: Event) {
 
   useState<Omit<User, 'hashedPassword'>>('user', () => user)
 
-  router.push('/')
+  navigateTo('/')
 }
 </script>
